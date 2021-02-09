@@ -1,15 +1,20 @@
-#build stage
-FROM golang:alpine AS builder
-RUN apk add --no-cache git
-WORKDIR /go/src/app
-COPY . .
-RUN go get -d -v ./...
-RUN go install -v ./...
+FROM golang:1.15-alpine3.12 AS builder
 
-#final stage
+# Meta information
+LABEL mantainer="Makuza Mugabo Verite"
+LABEL description="Youtube video downloader"
+
+# Copy files into a container
+COPY . /usr/src/app
+WORKDIR /usr/src/app
+
+
+# Install dependancies
+RUN go get -v -t -d ./...
+
+# Build the app
+RUN go build -o app .
+
 FROM alpine:latest
-RUN apk --no-cache add ca-certificates
-COPY --from=builder /go/bin/app /app
-ENTRYPOINT ./app
-LABEL Name=gtube Version=0.0.1
-EXPOSE 3000
+COPY --from=builder /usr/src/app/app .
+CMD [ "./app" ]
