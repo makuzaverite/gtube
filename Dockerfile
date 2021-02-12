@@ -1,4 +1,4 @@
-FROM golang:1.15-alpine3.12 AS builder
+FROM golang:alpine3.12
 
 # Meta information
 LABEL mantainer="Makuza Mugabo Verite"
