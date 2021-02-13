@@ -1,10 +1,12 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"os"
 	"sort"
 
+	"github.com/makuzaverite/gtube/cmd"
 	"github.com/urfave/cli/v2"
 )
 
@@ -30,6 +32,19 @@ func main() {
 		},
 	}
 
+	app.Action = func(c *cli.Context) error {
+
+		if len(c.Args().Get(0)) <= 0 {
+			fmt.Println("\nNo url specified")
+			fmt.Print("use gtube --help  for help\n")
+		} else {
+			cmd.DownloadDefaultVideo(c.Args().Get(0))
+		}
+
+		return nil
+	}
+
+	// flags
 	app.Flags = []cli.Flag{
 		&cli.StringFlag{
 			Name:    "url",
@@ -37,19 +52,6 @@ func main() {
 			Usage:   "Video url from youtube",
 		},
 	}
-
-	// app.Action = func(c *cli.Context) error {
-
-	// 	var output string
-
-	// 	if c.String("url") == "video" {
-	// 		output = "Video"
-	// 	}
-
-	// 	fmt.Println(output)
-
-	// 	return nil
-	// }
 
 	sort.Sort(cli.FlagsByName(app.Flags))
 
