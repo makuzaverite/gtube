@@ -15,6 +15,4 @@ RUN go get -v -t -d ./...
 # Build the app
 RUN go build -o app .
 
-FROM alpine:latest
-COPY --from=builder /usr/src/app/app .
 CMD [ "./app" ]

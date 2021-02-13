@@ -1,7 +1,11 @@
 package main
 
-import "fmt"
+import (
+	"os"
+
+	"github.com/urfave/cli/v2"
+)
 
 func main() {
-	fmt.Println("Docker setup done!")
+	(&cli.App{}).Run(os.Args)
 }
