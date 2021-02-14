@@ -9,8 +9,12 @@ import (
 
 //DownloadDefaultVideo  a  video when url is specified from youtube
 func DownloadDefaultVideo(url string) {
-	fmt.Printf("Donwloaing video from youtube with url %s\n", url)
-	utils.CheckURL(url)
+	isValidURL := utils.CheckURL(url)
+
+	if !isValidURL {
+		fmt.Printf("\nInvalid url %s\n", url)
+	}
+
 }
 
 func getVideoID(videoID string) string {

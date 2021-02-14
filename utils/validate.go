@@ -1,19 +1,16 @@
 package utils
 
 import (
-	"fmt"
 	"net/url"
 )
 
 //CheckURL used to check if it is a valid url
-func CheckURL(uri string) {
-	u, err := url.ParseRequestURI(uri)
+func CheckURL(uri string) bool {
+	_, err := url.ParseRequestURI(uri)
 
 	if err != nil {
-		fmt.Println(err.Error())
+		return false
 	}
 
-	if u != nil {
-		fmt.Println(u)
-	}
+	return true
 }
