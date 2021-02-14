@@ -36,7 +36,7 @@ func main() {
 
 		if len(c.Args().Get(0)) <= 0 {
 			fmt.Println("\nNo url specified")
-			fmt.Print("use gtube --help  for help\n")
+			fmt.Print("gtube: use --help  for help\n")
 		} else {
 			cmd.DownloadDefaultVideo(c.Args().Get(0))
 		}
