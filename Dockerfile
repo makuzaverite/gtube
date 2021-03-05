@@ -5,8 +5,16 @@ LABEL mantainer="Makuza Mugabo Verite"
 LABEL description="Youtube video downloader"
 
 # Copy files into a container
-COPY . /usr/src/app
 WORKDIR /usr/src/app
+
+
+#Download Dependancies
+COPY go.mod .
+COPY go.sum .
+RUN go mod download
+
+
+COPY . .
 
 
 # Install dependancies

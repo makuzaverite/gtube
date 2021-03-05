@@ -11,7 +11,7 @@
 
 	// Set *default* container specific settings.json values on container create.
 	"settings": {
-		// "terminal.integrated.shell.linux": "/bin/bash",
+		"terminal.integrated.shell.linux": "/bin/bash",
 		// "go.toolsManagement.checkForUpdates": "off",
 		// "go.useLanguageServer": true,
 		// "go.gopath": "/go",
@@ -28,7 +28,7 @@
 
 	// Uncomment the next line to run commands after the container is created - for example installing curl.
 	// "postCreateCommand": "apt-get update && apt-get install -y curl",
-	// "postCreateCommand": "go version",
+	"postCreateCommand": "go version",
 
 
 	// Uncomment when using a ptrace-based debugger like C++, Go, and Rust
