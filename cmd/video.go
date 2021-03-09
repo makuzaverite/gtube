@@ -2,22 +2,42 @@ package cmd
 
 import (
 	"fmt"
+	"net/url"
 	"regexp"
-
-	"github.com/makuzaverite/gtube/utils"
 )
 
 //DownloadDefaultVideo  a  video when url is specified from youtube
 func DownloadDefaultVideo(url string) {
-	isValidURL := utils.CheckURL(url)
-
-	if !isValidURL {
-		fmt.Printf("\nInvalid url %s\n", url)
-	}
-
+	getVideoIDFromURL(url)
 }
 
-func getVideoID(videoID string) string {
-	checkid := regexp.MustCompile("v=+")
-	return checkid.FindString(videoID)
+//TODO: Working on extracting video id from the url
+//https://gobyexample.com/url-parsing
+//https://gobyexample.com/regular-expressions
+func getVideoIDFromURL(videoURL string) string {
+
+	url, err := url.Parse(videoURL)
+
+	var videoID string
+
+	if err != nil {
+		panic(err)
+	}
+
+	urlPattern := regexp.MustCompile("([^\\?]*)/i")
+
+	if len(url.Host) > 0 && url.Host == "www.youtube.com" {
+
+		foundStatements := urlPattern.FindAllString(url.String(), -1)
+		fmt.Println(foundStatements)
+
+		if len(foundStatements) <= 0 {
+			panic("The video id is not defined")
+		}
+
+	} else {
+		panic("Invalid video url")
+	}
+
+	return videoID
 }
