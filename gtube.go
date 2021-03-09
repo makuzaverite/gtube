@@ -6,7 +6,6 @@ import (
 	"os"
 	"sort"
 
-	"github.com/makuzaverite/gtube/cmd"
 	"github.com/urfave/cli/v2"
 )
 
@@ -36,9 +35,9 @@ func main() {
 
 		if len(c.Args().Get(0)) <= 0 {
 			fmt.Println("\nNo url specified")
-			fmt.Print("use gtube --help  for help\n")
+			fmt.Print("gtube: use --help  for help\n")
 		} else {
-			cmd.DownloadDefaultVideo(c.Args().Get(0))
+			// cmd.DownloadDefaultVideo(c.Args().Get(0))
 		}
 
 		return nil
@@ -60,4 +59,5 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+
 }
